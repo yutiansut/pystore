@@ -17,9 +17,9 @@ PyStore - Fast data store for Pandas timeseries data
     :target: https://travis-ci.org/ranaroussi/pystore
     :alt: Travis-CI build status
 
-.. image:: https://img.shields.io/badge/Patreon-accepting-ff69b4.svg?style=flat
-    :target: https://www.patreon.com/aroussi
-    :alt: Patreon Status
+.. image:: https://www.codefactor.io/repository/github/ranaroussi/pystore/badge
+    :target: https://www.codefactor.io/repository/github/ranaroussi/pystore
+    :alt: CodeFactor
 
 .. image:: https://img.shields.io/github/stars/ranaroussi/pystore.svg?style=social&label=Star&maxAge=60
     :target: https://github.com/ranaroussi/pystore
@@ -59,14 +59,13 @@ Install using `pip`:
 
 .. code:: bash
 
-    $ pip install PyStore
+    $ pip install pystore --upgrade --no-cache-dir
 
-Or upgrade using:
+Install using `conda`:
 
 .. code:: bash
 
-    $ pip install PyStore --upgrade --no-cache-dir
-
+    $ conda install -c ranaroussi pystore
 
 **INSTALLATION NOTE:**
 If you don't have Snappy installed (compression/decompression library), you'll need to
@@ -84,8 +83,8 @@ Using PyStore
     import pystore
     import quandl
 
-    # Set storage path (optional, default is `~/.pystore`)
-    pystore.set_path('/usr/share/pystore')
+    # Set storage path (optional, default is `~/pystore`)
+    pystore.set_path("~/pystore")
 
     # List stores
     pystore.list_stores()
@@ -178,6 +177,7 @@ Requirements
 * Dask
 * Fastparquet
 * `Snappy <http://google.github.io/snappy/>`_ (Google's compression/decompression library)
+* multitasking
 
 PyStore was tested to work on \*nix-like systems, including macOS.
 
@@ -198,20 +198,34 @@ You'll need to install Snappy on your system before installing PyStore.
 
 **macOS:**
 
+First, install Snappy's C library using `Homebrew <https://brew.sh>`_:
+
 .. code::
 
-    $ brew install snappy  # Snappy's C library
+    $ brew install snappy
+
+Then, install Python's snappy using conda:
+
+.. code::
+
+    $ conda install python-snappy -c conda-forge
+
+...or, using `pip`:
+
+.. code::
+
     $ CPPFLAGS="-I/usr/local/include -L/usr/local/lib" pip install python-snappy
+
 
 **Windows:**
 
 Windows users should checkout `Snappy for Windows <https://snappy.machinezoo.com>`_ and `this Stackoverflow post <https://stackoverflow.com/a/43756412/1783569>`_ for help on installing Snappy and ``python-snappy``.
 
 
-Known Limitation
-================
+Roadmap
+=======
 
-PyStore currently only offers support for local filesystem.
+PyStore currently offers support for local filesystem.
 I plan on adding support for Amazon S3 (via `s3fs <http://s3fs.readthedocs.io/>`_),
 Google Cloud Storage (via `gcsfs <https://github.com/dask/gcsfs/>`_)
 and Hadoop Distributed File System (via `hdfs3 <http://hdfs3.readthedocs.io/>`_) in the future.

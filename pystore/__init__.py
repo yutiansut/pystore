@@ -4,7 +4,7 @@
 # PyStore: Flat-file datastore for timeseries data
 # https://github.com/ranaroussi/pystore
 #
-# Copyright 2018 Ran Aroussi
+# Copyright 2018-2019 Ran Aroussi
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,14 +18,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+""" temp fix for fastparquet 0.3.2 and numba 0.45.1"""
+try:
+    import numba as _
+except ImportError:
+    pass
+
 from .store import store
 from .utils import (
-    set_path, get_path,
-    list_stores, delete_store, delete_stores
-)
+    read_csv, set_path, get_path,
+    list_stores, delete_store, delete_stores)
 
-__version__ = "0.1.5"
+__version__ = "0.1.15"
 __author__ = "Ran Aroussi"
 
-__all__ = ['store', 'get_path', 'set_path',
-           'list_stores', 'delete_store', 'delete_stores']
+__all__ = ["store", "read_csv", "get_path", "set_path",
+           "list_stores", "delete_store", "delete_stores"]

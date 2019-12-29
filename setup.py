@@ -30,16 +30,17 @@ with codecs.open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='PyStore',
-    version="0.1.5",
+    version="0.1.15",
     description='Fast data store for Pandas timeseries data',
     long_description=long_description,
     url='https://github.com/ranaroussi/pystore',
     author='Ran Aroussi',
     author_email='ran@aroussi.com',
-    license='LGPL',
+    license='Apache Software License',
     classifiers=[
         'License :: OSI Approved :: Apache Software License',
-        'Development Status :: 4 - Beta',
+        # 'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
 
         'Operating System :: OS Independent',
         'Intended Audience :: Developers',
@@ -56,8 +57,9 @@ setup(
     platforms=['linux', 'unix', 'macOS'],
     keywords='dask, datastore, flatfile, pystore',
     packages=find_packages(exclude=['contrib', 'docs', 'tests', 'examples']),
-    install_requires=['pandas', 'numpy', 'fastparquet', 'python-snappy',
-                      'dask', 'toolz', 'partd', 'cloudpickle', 'distributed'],
+    install_requires=['python-snappy', 'multitasking', 'toolz', 'partd',
+                      'cloudpickle', 'distributed', 'pandas', 'numpy',
+                      'fastparquet', 'dask'],
     entry_points={
         'console_scripts': [
             'sample=sample:main',

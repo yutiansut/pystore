@@ -3,10 +3,6 @@ language: python
 sudo: true
 fast_finish: true
 
-# python:
-#   - "3.5"
-#   - "3.6"
-
 matrix:
   include:
     - python: 2.7
@@ -20,7 +16,8 @@ before_install:
   - sudo apt-get install libsnappy-dev zlib1g-dev libbz2-dev cmake-data cmake -qq
 
 install:
-  - pip install snappy
+  - if [[ $TRAVIS_PYTHON_VERSION != "2.7" ]]; then pip install 'fsspec>=0.3.3'; fi
+  - pip install python-snappy
   - pip install Cython
   - pip install -r requirements.txt
   - pip install .
@@ -36,6 +33,7 @@ branches:
     - master
 
 notifications:
+  slack: tradologics:HcnS6XusfcuS02waQPCG18oc
   webhooks:
     on_success: change  # options: [always|never|change] default: always
     on_failure: always  # options: [always|never|change] default: always

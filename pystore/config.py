@@ -4,7 +4,7 @@
 # PyStore: Flat-file datastore for timeseries data
 # https://github.com/ranaroussi/pystore
 #
-# Copyright 2018 Ran Aroussi
+# Copyright 2018-2019 Ran Aroussi
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,4 +18,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-DEFAULT_PATH = '~/.pystore'
+from os.path import expanduser as _expanduser
+DEFAULT_PATH = _expanduser("~/pystore")
